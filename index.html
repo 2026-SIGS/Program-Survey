@@ -69,6 +69,7 @@
     .cat-btn:hover  { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.18); }
     .cat-btn:active { transform: translateY(0);     box-shadow: 0 2px 8px  rgba(0,0,0,.12); }
     .cat-btn.active { outline: 4px solid #fff; outline-offset: 3px; box-shadow: 0 8px 24px rgba(0,0,0,.28); }
+    .cat-btn.dimmed { opacity: .35; }
 
     .cat-btn .icon { font-size: 28px; }
     .cat-btn .count {
@@ -203,7 +204,8 @@
 
 <div class="notice">
   <strong>📋 설문 참여 방법</strong>
-  아래에서 ① 참여하신 프로그램 카테고리 버튼을 누르거나, ② 프로그램명을 직접 찾아 클릭하세요. 설문은 약 <strong>3~5분</strong> 소요되며, 소중한 의견은 더 나은 프로그램 운영에 활용됩니다.
+  아래에서 ① 참여하신 프로그램 카테고리 버튼을 누르거나, ② 프로그램명을 직접 찾아 클릭하세요.<br>
+  설문은 약 <strong>3~5분</strong> 소요되며, 소중한 의견은 더 나은 프로그램 운영에 활용됩니다.
 </div>
 
 <section class="category-section">
@@ -1057,10 +1059,11 @@
     const btns   = document.querySelectorAll('.cat-btn');
 
     btns.forEach(b => {
-      b.classList.remove('active');
+      b.classList.remove('active', 'dimmed');
       if (cat !== '전체') {
         const label = b.textContent.trim().split('\n')[0].trim();
         if (label === cat) b.classList.add('active');
+        else               b.classList.add('dimmed');
       }
     });
 
@@ -1089,7 +1092,7 @@
     const btns   = document.querySelectorAll('.cat-btn');
 
     if (q) {
-      btns.forEach(b => b.classList.remove('active'));
+      btns.forEach(b => b.classList.remove('active', 'dimmed'));
       currentCat = '전체';
     }
 
